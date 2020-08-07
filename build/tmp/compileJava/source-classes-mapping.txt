@@ -1,0 +1,20 @@
+it/unicam/cs/pa/jlife102627/save/LoadInterface.java
+ it.unicam.cs.pa.jlife102627.save.LoadInterface
+it/unicam/cs/pa/jlife102627/Model/BoardInterface.java
+ it.unicam.cs.pa.jlife102627.Model.BoardInterface
+it/unicam/cs/pa/jlife102627/Model/CellInterface.java
+ it.unicam.cs.pa.jlife102627.Model.CellInterface
+it/unicam/cs/pa/jlife102627/Model/Cell.java
+ it.unicam.cs.pa.jlife102627.Model.Cell
+it/unicam/cs/pa/jlife102627/Controller.java
+ it.unicam.cs.pa.jlife102627.Controller
+it/unicam/cs/pa/jlife102627/Model/Board.java
+ it.unicam.cs.pa.jlife102627.Model.Board
+it/unicam/cs/pa/jlife102627/save/SaveInterface.java
+ it.unicam.cs.pa.jlife102627.save.SaveInterface
+it/unicam/cs/pa/jlife102627/App.java
+ it.unicam.cs.pa.jlife102627.App
+it/unicam/cs/pa/jlife102627/view/ViewCli.java
+ it.unicam.cs.pa.jlife102627.view.ViewCli
+it/unicam/cs/pa/jlife102627/view/ViewInterface.java
+ it.unicam.cs.pa.jlife102627.view.ViewInterface

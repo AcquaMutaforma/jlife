@@ -1,2 +1,4 @@
-package it.unicam.cs.pa.jlife102627.save;public interface SaveInterface {
+package it.unicam.cs.pa.jlife102627.save;
+
+public interface SaveInterface {
 }
