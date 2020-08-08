@@ -14,14 +14,13 @@ public class App {
 
     private HashMap<String, Consumer<Controller>> commands;
 
-    public App(ViewInterface view) {
-        this.view = view;
+    public App() {
         this.controller = new Controller();
+        this.view = new ViewCli(this.controller);
     }
 
     public static void main(String[] args) throws IOException {
-        ViewInterface v = new ViewCli();
-        App app = new App(v);
+        App app = new App();
         app.generateCommands();
         app.start();
     }
@@ -30,9 +29,18 @@ public class App {
         this.view.printHello();
         userInteractions();
         generateCommands();
-        while (true){
-            if(this.view.getCommand().equals("exit"))
+        while (true) {
+            String command = this.view.getCommand();
+            if(command.equals("exit")) {
+                this.view.printGoodbye();
                 break;
+            }
+            Consumer<Controller> action = this.commands.get(command);
+            if(action == null){
+                this.view.unknown();
+                continue;
+            }
+            action.accept(this.controller);
         }
         this.view.printGoodbye();
     }

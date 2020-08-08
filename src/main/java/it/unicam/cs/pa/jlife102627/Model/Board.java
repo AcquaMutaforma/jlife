@@ -27,7 +27,7 @@ public class Board implements BoardInterface{
         int count = 0;
         for(int i = x-1; i < x+1; i++){
             for(int j = y-1; j < y+1; j++){
-                if((i < 0 || j < 0) && (i > getDim() || j > getDim()))
+                if(i < 0 || j < 0 || i > getDim() || j > getDim())
                     continue;
                 if(this.matrix[i][j].getState())
                     count++;

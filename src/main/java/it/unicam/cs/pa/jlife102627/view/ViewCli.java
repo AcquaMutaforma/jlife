@@ -10,18 +10,25 @@ import java.io.InputStreamReader;
 public class ViewCli implements ViewInterface{
 
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    Controller controller;
+
+    public ViewCli(Controller controller) {
+        this.controller = controller;
+    }
 
     @Override
     public void printBoard(BoardInterface board) {
         System.out.println("\n");
         for(int i = 0; i < board.getDim(); i++){
-            for(int j = 0; j < board.getDim(); i++){
+            for(int j = 0; j < board.getDim(); j++){
                 if(board.getCell(i,j).getState())
                     System.out.print("[x]");
                 else
                     System.out.print("[ ]");
             }
+            System.out.print("\n");
         }
+        System.out.print("\n");
     }
 
     @Override
@@ -42,18 +49,26 @@ public class ViewCli implements ViewInterface{
 
     @Override
     public String getCommand() throws IOException {
+        printBoard(this.controller.getBoard());
         System.out.print("\ncommand >");
         return input.readLine();
     }
 
     @Override
-    public boolean askLoad() {
-        return false;
+    public boolean askLoad() throws IOException {
+        System.out.print("\nWanna load a board ? [yes/no] >");
+        String load = input.readLine();
+        return load.equals("") || load.toLowerCase().equals("yes");
     }
 
     @Override
     public Controller load() {
         return null;
+    }
+
+    @Override
+    public void unknown() {
+        System.out.print("\nUnknown command");
     }
 
     @Override

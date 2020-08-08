@@ -17,7 +17,7 @@ public interface ViewInterface {
      * Chiede all'utente se vuole caricare una sessione precedente
      * @return risposta utente.
      */
-    boolean askLoad();
+    boolean askLoad() throws IOException;
 
     /**
      * Dopo aver richiesto il percorso all'utente, carica una sessione precedente
@@ -26,5 +26,7 @@ public interface ViewInterface {
      */
     Controller load();
 
+    void unknown();
     void printGoodbye();
+
 }

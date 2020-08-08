@@ -23,4 +23,8 @@ public class Controller {
             this.board.nextTime();
         }
     }
+
+    public BoardInterface getBoard() {
+        return this.board;
+    }
 }
