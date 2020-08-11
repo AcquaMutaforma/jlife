@@ -6,6 +6,8 @@ import it.unicam.cs.pa.jlife102627.Model.BoardInterface;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.function.Consumer;
 
 public class ViewCli implements ViewInterface{
 
@@ -74,5 +76,10 @@ public class ViewCli implements ViewInterface{
     @Override
     public void printGoodbye() {
         System.out.println("\nBye Sir !!\n\n");
+    }
+
+    @Override
+    public void printCommands(HashMap<String, Consumer<Controller>> map) {
+
     }
 }

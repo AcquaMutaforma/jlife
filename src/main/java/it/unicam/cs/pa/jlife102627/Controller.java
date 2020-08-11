@@ -18,11 +18,15 @@ public class Controller {
         this.board.nextTime();
     }
 
+    /*
+    //TODO decidi se serve o meno
     public void nextTime(int t){
         for(int i = 0; i < t; i++){
             this.board.nextTime();
         }
     }
+
+     */
 
     public BoardInterface getBoard() {
         return this.board;

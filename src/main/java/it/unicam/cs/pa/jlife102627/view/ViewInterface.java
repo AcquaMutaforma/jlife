@@ -4,6 +4,8 @@ import it.unicam.cs.pa.jlife102627.Controller;
 import it.unicam.cs.pa.jlife102627.Model.BoardInterface;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.function.Consumer;
 
 public interface ViewInterface {
 
@@ -28,5 +30,6 @@ public interface ViewInterface {
 
     void unknown();
     void printGoodbye();
+    void printCommands(HashMap<String, Consumer<Controller>> map);
 
 }

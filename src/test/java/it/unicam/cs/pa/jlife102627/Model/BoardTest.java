@@ -14,17 +14,17 @@ public class BoardTest {
 
         assertTrue(b.getNeighbors(1,1) >= 0);
 
-        //TODO fix
         dim = 5;
         b = new Board(dim);
         b.generateRandomBoard();
-
-        for(int i = dim-1; i < dim+1; i++){
-            for(int j = dim-1; j < dim-1; j++){
+        int x = dim-1;
+        int y = dim-1;
+        for(int i = x-1; i < x+1; i++){
+            for(int j = y-1; j < y-1; j++){
                 b.getCell(i,j).setState(true);
             }
         }
-        assertEquals(b.getNeighbors(dim,dim), 8);
+        assertEquals(b.getNeighbors(x,y), 8);
     }
 
     @Test
