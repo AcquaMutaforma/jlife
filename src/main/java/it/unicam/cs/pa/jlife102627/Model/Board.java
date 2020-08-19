@@ -8,11 +8,11 @@ import java.util.Random;
  */
 public class Board implements BoardInterface{
 
-    private final CellInterface[][] matrix;
-    private final int dim;
+    protected final CellInterface[][] matrix;
+    protected final int dim;
 
     public Board(int d) {
-        this.matrix = new Cell[d][d];
+        this.matrix = new CellInterface[d][d];
         this.dim = d;
         generateRandomBoard();
     }

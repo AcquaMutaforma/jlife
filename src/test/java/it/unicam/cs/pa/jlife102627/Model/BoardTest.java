@@ -17,8 +17,8 @@ public class BoardTest {
         dim = 5;
         b = new Board(dim);
         b.generateRandomBoard();
-        int x = dim-1;
-        int y = dim-1;
+        int x = 3;
+        int y = 3;
         for(int i = x-1; i < x+1; i++){
             for(int j = y-1; j < y-1; j++){
                 b.getCell(i,j).setState(true);
