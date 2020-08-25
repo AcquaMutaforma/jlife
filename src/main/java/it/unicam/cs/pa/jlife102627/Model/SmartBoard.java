@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 
 public class SmartBoard extends Board{
 
-    private HashMap<Predicate<Integer>, Consumer<CellInterface>> rules;
+    private final HashMap<Predicate<Integer>, Consumer<CellInterface>> rules;
 
     public SmartBoard(int d, HashMap<Predicate<Integer>, Consumer<CellInterface>> r) {
         super(d);

@@ -9,10 +9,10 @@ import java.util.function.Consumer;
 
 public class App {
 
-    private Controller controller;
+    private ControllerInterface controller;
     private final ViewInterface view;
 
-    private HashMap<String, Consumer<Controller>> commands;
+    private HashMap<String, Consumer<ControllerInterface>> commands;
 
     public App() {
         this.controller = new Controller();
@@ -27,15 +27,14 @@ public class App {
 
     public void start() throws IOException {
         this.view.printHello();
-        userInteractions();
+        askForLoad();
         generateCommands();
         while (true) {
             String command = this.view.getCommand();
             if(command.equals("exit")) {
-                this.view.printGoodbye();
                 break;
             }
-            Consumer<Controller> action = this.commands.get(command);
+            Consumer<ControllerInterface> action = this.commands.get(command);
             if(action == null){
                 this.view.unknown();
                 continue;
@@ -45,17 +44,15 @@ public class App {
         this.view.printGoodbye();
     }
 
-    private void userInteractions() throws IOException {
+    private void askForLoad() throws IOException {
         if(this.view.askLoad())
             this.controller = this.view.load();
-        else
-            this.controller.newBoard(this.view.getGameParameters());
     }
 
     private void generateCommands(){
         this.commands = new HashMap<>();
-        this.commands.put("", Controller::nextTime);
-        this.commands.put("next", Controller::nextTime);
+        this.commands.put("", ControllerInterface::nextTime);
+        this.commands.put("next", ControllerInterface::nextTime);
         this.commands.put("new", x -> {
             try {
                 x.newBoard(this.view.getGameParameters());
@@ -63,6 +60,5 @@ public class App {
                 e.printStackTrace();
             }
         });
-        
     }
 }

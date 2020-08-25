@@ -14,8 +14,6 @@ public interface ControllerInterface {
     BoardInterface getBoard();
 
     // Not The Classic Game Of Life
-    void loadRules();
-    void newSmartBoard(int dim);
-    boolean addRule( Predicate<Integer> k, Consumer<CellInterface> v);
-    boolean rmRule(int i);
+    void newSmartBoard(int dim, HashMap<Predicate<Integer>, Consumer<CellInterface>> r);
+
 }

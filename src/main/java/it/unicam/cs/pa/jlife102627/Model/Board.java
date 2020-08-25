@@ -8,13 +8,12 @@ import java.util.Random;
  */
 public class Board implements BoardInterface{
 
-    protected final CellInterface[][] matrix;
+    protected CellInterface[][] matrix;
     protected final int dim;
 
     public Board(int d) {
         this.matrix = new CellInterface[d][d];
         this.dim = d;
-        generateRandomBoard();
     }
 
     @Override
@@ -24,16 +23,18 @@ public class Board implements BoardInterface{
 
     @Override
     public int getNeighbors(int x, int y) {
-        int count = 0;
-        for(int i = x-1; i < x+1; i++){
-            for(int j = y-1; j < y+1; j++){
-                if(i < 0 || j < 0 || i > getDim() || j > getDim())
+        int tmp = 0;
+        for(int i = x-1; i < x+2; i++){
+            for(int j = y-1; j < y+2; j++){
+                if(i < 0 || j < 0 || i > getDim()-1 || j > getDim()-1)
                     continue;
                 if(this.matrix[i][j].getState())
-                    count++;
+                    tmp++;
             }
         }
-        return count;
+        if(this.matrix[x][y].getState())
+            tmp--;
+        return tmp;
     }
 
     @Override
@@ -48,9 +49,15 @@ public class Board implements BoardInterface{
 
     @Override
     public void nextTime() {
-        for(int i = 0; i < this.matrix.length; i++){
-            for(int j = 0; j < this.matrix.length; j++){
-                this.matrix[i][j].live(getNeighbors(i,j));
+        int[][] next = new int[getDim()][getDim()];
+        for(int i = 0; i < this.dim; i++){
+            for(int j = 0; j < this.dim; j++){
+                next[i][j] = getNeighbors(i,j);
+            }
+        }
+        for(int i = 0; i < this.dim; i++){
+            for(int j = 0; j < this.dim; j++){
+                this.matrix[i][j].live(next[i][j]);
             }
         }
     }

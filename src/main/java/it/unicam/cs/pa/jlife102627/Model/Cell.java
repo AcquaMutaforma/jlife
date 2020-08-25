@@ -1,8 +1,5 @@
 package it.unicam.cs.pa.jlife102627.Model;
 
-import java.util.HashSet;
-import java.util.function.Consumer;
-
 /**
  * Rappresenta una cellula
  */

@@ -15,6 +15,8 @@ public class SmartCell extends Cell{
 
     @Override
     public void live(int n){
+        if(rules == null)
+            throw new NullPointerException();
         for(Predicate<Integer> p : rules.keySet()){
             if(p.test(n)) {
                 rules.get(p).accept(this);

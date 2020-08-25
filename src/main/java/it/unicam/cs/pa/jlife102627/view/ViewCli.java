@@ -1,6 +1,6 @@
 package it.unicam.cs.pa.jlife102627.view;
 
-import it.unicam.cs.pa.jlife102627.Controller;
+import it.unicam.cs.pa.jlife102627.ControllerInterface;
 import it.unicam.cs.pa.jlife102627.Model.BoardInterface;
 
 import java.io.BufferedReader;
@@ -12,14 +12,17 @@ import java.util.function.Consumer;
 public class ViewCli implements ViewInterface{
 
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-    Controller controller;
+    ControllerInterface controller;
 
-    public ViewCli(Controller controller) {
+    public ViewCli(ControllerInterface controller) {
         this.controller = controller;
     }
 
     @Override
-    public void printBoard(BoardInterface board) {
+    public void printBoard() {
+        BoardInterface board = this.controller.getBoard();
+        if(board == null || board.getCell(0,0) == null)
+            return;
         System.out.println("\n");
         for(int i = 0; i < board.getDim(); i++){
             for(int j = 0; j < board.getDim(); j++){
@@ -41,35 +44,46 @@ public class ViewCli implements ViewInterface{
                 "    |  |  |_|  ||  | \\  ___/ \n" +
                 "/\\__|  |____/__||__|  \\___  >\n" +
                 "\\______|                  \\/\n");
+        System.out.print("\n\nFor help type: help\nFor check the commands type: commands");
     }
 
     @Override
     public int getGameParameters() throws IOException {
-        System.out.print("\nInsert the dimension of the board >");
+        /*TODO decidere come farlo funzionare eheh
+        System.out.print("\nWhat type of board do you want to create ? [normal/smart] > ");
+        String t = input.readLine();
+         */
+        System.out.print("\nInsert the dimension of the board > ");
         return Integer.parseInt(input.readLine());
     }
 
     @Override
     public String getCommand() throws IOException {
-        printBoard(this.controller.getBoard());
-        System.out.print("\ncommand >");
+        printBoard();
+        System.out.print("\ncommand > ");
         return input.readLine();
     }
 
     @Override
     public boolean askLoad() throws IOException {
-        System.out.print("\nWanna load a board ? [yes/no] >");
-        String load = input.readLine();
-        return load.equals("") || load.toLowerCase().equals("yes");
+        do {
+            System.out.print("\nWanna load a board ? [yes/no] > ");
+            String load = input.readLine();
+            if (load.equals("yes"))
+                return true;
+            if (load.equals("") || load.toLowerCase().equals("no"))
+                return false;
+        }while(true);
     }
 
     @Override
-    public Controller load() {
+    public ControllerInterface load() {
         return null;
     }
 
     @Override
     public void unknown() {
+        //TODO pensare se va bene o creare un errore apposito
         System.out.print("\nUnknown command");
     }
 
@@ -79,7 +93,7 @@ public class ViewCli implements ViewInterface{
     }
 
     @Override
-    public void printCommands(HashMap<String, Consumer<Controller>> map) {
+    public void printCommands(HashMap<String, Consumer<ControllerInterface>> map) {
 
     }
 }
