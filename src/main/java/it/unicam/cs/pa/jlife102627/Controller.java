@@ -21,7 +21,10 @@ public class Controller implements ControllerInterface{
     private BoardInterface board;
 
     public Controller() {
-
+        /*
+        this.loader = new Loader();
+        this.saver = new Saver();
+         */
     }
 
     @Override

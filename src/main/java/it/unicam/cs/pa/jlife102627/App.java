@@ -1,5 +1,7 @@
 package it.unicam.cs.pa.jlife102627;
 
+import it.unicam.cs.pa.jlife102627.rules.RulesManager;
+import it.unicam.cs.pa.jlife102627.rules.RulesManagerInterface;
 import it.unicam.cs.pa.jlife102627.view.ViewCli;
 import it.unicam.cs.pa.jlife102627.view.ViewInterface;
 
@@ -15,8 +17,9 @@ public class App {
     private HashMap<String, Consumer<ControllerInterface>> commands;
 
     public App() {
+        RulesManagerInterface rulesm = new RulesManager();
         this.controller = new Controller();
-        this.view = new ViewCli(this.controller);
+        this.view = new ViewCli(this.controller, rulesm);
     }
 
     public static void main(String[] args) throws IOException {
@@ -34,6 +37,7 @@ public class App {
             if(command.equals("exit")) {
                 break;
             }
+            //TODO probabilmente è meglio dare i comandi alla view che li manda al controller :c
             Consumer<ControllerInterface> action = this.commands.get(command);
             if(action == null){
                 this.view.unknown();
@@ -50,12 +54,21 @@ public class App {
     }
 
     private void generateCommands(){
+        //TODO modificare i comandi per view invece che per controller
         this.commands = new HashMap<>();
         this.commands.put("", ControllerInterface::nextTime);
         this.commands.put("next", ControllerInterface::nextTime);
         this.commands.put("new", x -> {
             try {
-                x.newBoard(this.view.getGameParameters());
+                x.newBoard(this.view.getBoardParameters());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        this.commands.put("newsmart", x -> {
+            try {
+                x.newSmartBoard(this.view.getBoardParameters(),
+                        this.view.getRules());
             } catch (IOException e) {
                 e.printStackTrace();
             }

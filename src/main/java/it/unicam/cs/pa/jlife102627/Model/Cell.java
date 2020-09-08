@@ -1,20 +1,16 @@
 package it.unicam.cs.pa.jlife102627.Model;
 
 /**
- * Rappresenta una cellula
+ * ha la responsabilita' di rappresentare una cellula
  */
 public class Cell implements CellInterface{
 
     private boolean state;
 
-    public Cell(boolean state) {
-        this.state = state;
-    }
+    public Cell(boolean state) {  this.state = state;  }
 
     @Override
-    public boolean getState() {
-        return this.state;
-    }
+    public boolean getState() {   return this.state;   }
 
     @Override
     public void setState(boolean s) {

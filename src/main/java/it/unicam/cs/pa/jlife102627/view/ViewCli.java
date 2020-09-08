@@ -2,19 +2,26 @@ package it.unicam.cs.pa.jlife102627.view;
 
 import it.unicam.cs.pa.jlife102627.ControllerInterface;
 import it.unicam.cs.pa.jlife102627.Model.BoardInterface;
+import it.unicam.cs.pa.jlife102627.Model.CellInterface;
+import it.unicam.cs.pa.jlife102627.rules.RulesManagerInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.TreeSet;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class ViewCli implements ViewInterface{
 
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
     ControllerInterface controller;
+    RulesManagerInterface rulesm;
 
-    public ViewCli(ControllerInterface controller) {
+    public ViewCli(ControllerInterface controller, RulesManagerInterface r) {
+        this.rulesm = r;
         this.controller = controller;
     }
 
@@ -48,13 +55,31 @@ public class ViewCli implements ViewInterface{
     }
 
     @Override
-    public int getGameParameters() throws IOException {
-        /*TODO decidere come farlo funzionare eheh
-        System.out.print("\nWhat type of board do you want to create ? [normal/smart] > ");
-        String t = input.readLine();
-         */
+    public String getBoardType() throws IOException {
+        String t;
+        do{
+            System.out.print("\nSelect the type of the board [default/smart] > ");
+            t = input.readLine();
+            if(t.equals("default") || t.equals("smart") || t.equals("d") || t.equals("s"))
+                return t;
+            System.out.print("\nInvalid type !!\n Try again >.<");
+        }while(true);
+    }
+
+    @Override
+    public int getBoardParameters() throws IOException {
         System.out.print("\nInsert the dimension of the board > ");
         return Integer.parseInt(input.readLine());
+    }
+
+    @Override
+    public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException {
+        System.out.print("\nChose the life rules of Smart Cells:");
+        for(String s : this.rulesm.getAvailableRules()){
+            System.out.print("\n- "+s);
+        }
+        System.out.print("\nRule > ");
+        return this.rulesm.getRules(input.readLine());
     }
 
     @Override
@@ -93,7 +118,9 @@ public class ViewCli implements ViewInterface{
     }
 
     @Override
-    public void printCommands(HashMap<String, Consumer<ControllerInterface>> map) {
-
+    public void printCommands(TreeSet<String> set) {
+        TreeSet<String> words = new TreeSet<>(set);
+        String[] wordsArray = words.toArray(new String[] {});
+        System.out.println("Commands: "+ Arrays.toString(wordsArray));
     }
 }

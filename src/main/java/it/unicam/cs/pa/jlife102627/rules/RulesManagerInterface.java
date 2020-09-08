@@ -15,4 +15,5 @@ public interface RulesManagerInterface {
     List<String> getAvailableRules();
 
     HashMap<Predicate<Integer>, Consumer<CellInterface>> getDefaultRules();
+    HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules(String s);
 }
