@@ -1,6 +1,5 @@
 package it.unicam.cs.pa.jlife102627.view;
 
-import it.unicam.cs.pa.jlife102627.ControllerInterface;
 import it.unicam.cs.pa.jlife102627.Model.CellInterface;
 
 import java.io.IOException;
@@ -17,19 +16,11 @@ public interface ViewInterface {
     void printGoodbye();
 
     /**
-     * chiede all'utente il tipo di griglia che si vuole costruire
-     */
-    String getBoardType() throws IOException;
-
-    /**
      * chiede all'utente la dimensione dalla griglia
      * @return int dimensione tabella
      * @throws IOException se l'utente inserisce un valore non valido
      */
     int getBoardParameters() throws IOException;
-
-    //chiede il tipo di regole da applicare alla smart cell
-    HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException;
 
     /**
      * Chiede all'utente se vuole caricare una sessione precedente
@@ -40,10 +31,18 @@ public interface ViewInterface {
     /**
      * Dopo aver richiesto il percorso all'utente, carica una sessione precedente
      * attraverso LoadInterface
-     * @return Controller
      */
-    ControllerInterface load();
+    void load();
+    void save();
+
+    String getBoardType() throws IOException;
+    HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException;
 
     void unknown();
     void printCommands(TreeSet<String> set);
+
+    /* Comandi per il controller */
+    void nextTime();
+    void newBoard() throws IOException;
+
 }

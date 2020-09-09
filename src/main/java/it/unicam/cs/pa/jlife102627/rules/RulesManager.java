@@ -18,7 +18,7 @@ public class RulesManager implements RulesManagerInterface{
     public List<String> getAvailableRules() {
         List<String> available = new ArrayList<>();
         available.add("default");
-        //avaialable.add("zombie");
+        available.add("zombie");
         return available;
     }
 
@@ -35,7 +35,7 @@ public class RulesManager implements RulesManagerInterface{
         return r;
     }
 
-    //TODO EHEH non so che metterci per rendere l'idea di qualcosa di personalizzabile
+    //TODO EHEH non so che metterci, dai rendi l'idea susu
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getZombieRules() {
         HashMap<Predicate<Integer>, Consumer<CellInterface>> r = new HashMap<>();
         r.put(x -> x > 3 || x < 2, y -> y.setState(false));

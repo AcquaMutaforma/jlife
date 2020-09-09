@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
- * Gestisce la tabella e la sua evoluzione a seconda dei comandi ricevuti dall'utente.
+ * Gestisce la tabella e la sua evoluzione eseguendo i comandi ricevuti dall'utente.
  */
 public class Controller implements ControllerInterface{
 

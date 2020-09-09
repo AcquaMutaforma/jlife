@@ -3,7 +3,6 @@ package it.unicam.cs.pa.jlife102627.view;
 import it.unicam.cs.pa.jlife102627.ControllerInterface;
 import it.unicam.cs.pa.jlife102627.Model.BoardInterface;
 import it.unicam.cs.pa.jlife102627.Model.CellInterface;
-import it.unicam.cs.pa.jlife102627.rules.RulesManagerInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,12 +16,12 @@ import java.util.function.Predicate;
 public class ViewCli implements ViewInterface{
 
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+    SmartViewInterface smartview;
     ControllerInterface controller;
-    RulesManagerInterface rulesm;
 
-    public ViewCli(ControllerInterface controller, RulesManagerInterface r) {
-        this.rulesm = r;
+    public ViewCli(ControllerInterface controller) {
         this.controller = controller;
+        this.smartview = new SmartViewCli(this.input);
     }
 
     @Override
@@ -56,14 +55,7 @@ public class ViewCli implements ViewInterface{
 
     @Override
     public String getBoardType() throws IOException {
-        String t;
-        do{
-            System.out.print("\nSelect the type of the board [default/smart] > ");
-            t = input.readLine();
-            if(t.equals("default") || t.equals("smart") || t.equals("d") || t.equals("s"))
-                return t;
-            System.out.print("\nInvalid type !!\n Try again >.<");
-        }while(true);
+        return this.smartview.getBoardType();
     }
 
     @Override
@@ -74,12 +66,7 @@ public class ViewCli implements ViewInterface{
 
     @Override
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException {
-        System.out.print("\nChose the life rules of Smart Cells:");
-        for(String s : this.rulesm.getAvailableRules()){
-            System.out.print("\n- "+s);
-        }
-        System.out.print("\nRule > ");
-        return this.rulesm.getRules(input.readLine());
+        return this.smartview.getRules();
     }
 
     @Override
@@ -102,8 +89,13 @@ public class ViewCli implements ViewInterface{
     }
 
     @Override
-    public ControllerInterface load() {
-        return null;
+    public void load(){
+        //TODO
+    }
+
+    @Override
+    public void save() {
+        //TODO
     }
 
     @Override
@@ -122,5 +114,15 @@ public class ViewCli implements ViewInterface{
         TreeSet<String> words = new TreeSet<>(set);
         String[] wordsArray = words.toArray(new String[] {});
         System.out.println("Commands: "+ Arrays.toString(wordsArray));
+    }
+
+    @Override
+    public void nextTime() {
+        this.controller.nextTime();
+    }
+
+    @Override
+    public void newBoard() throws IOException {
+        this.controller.newBoard(getBoardParameters());
     }
 }
