@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -21,7 +22,6 @@ public class ViewCli implements ViewInterface{
 
     public ViewCli(ControllerInterface controller) {
         this.controller = controller;
-        this.smartview = new SmartViewCli(this.input);
     }
 
     @Override
@@ -50,12 +50,23 @@ public class ViewCli implements ViewInterface{
                 "    |  |  |_|  ||  | \\  ___/ \n" +
                 "/\\__|  |____/__||__|  \\___  >\n" +
                 "\\______|                  \\/\n");
-        System.out.print("\n\nFor help type: help\nFor check the commands type: commands");
+        System.out.print("\n\nIf you need help type: help\nTo check the commands type: commands");
     }
 
     @Override
-    public String getBoardType() throws IOException {
-        return this.smartview.getBoardType();
+    public void getBoardType() throws IOException {
+        String t;
+        do{
+            System.out.print("\nSelect the type of the board [default/smart] > ");
+            t = input.readLine();
+            if(t.equals("default") || t.equals("d") ) {
+                newBoard();
+            }
+            else if(t.equals("smart") || t.equals("s")) {
+                newSmartBoard();
+            }else
+                System.out.print("\nInvalid type !!\n Try again >.<");
+        }while(!t.equals("default") && !t.equals("smart") && !t.equals("d") && !t.equals("s"));
     }
 
     @Override
@@ -66,6 +77,7 @@ public class ViewCli implements ViewInterface{
 
     @Override
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException {
+        this.smartview = new SmartViewCli(this.input);
         return this.smartview.getRules();
     }
 
@@ -110,7 +122,7 @@ public class ViewCli implements ViewInterface{
     }
 
     @Override
-    public void printCommands(TreeSet<String> set) {
+    public void printCommands(Set<String> set) {
         TreeSet<String> words = new TreeSet<>(set);
         String[] wordsArray = words.toArray(new String[] {});
         System.out.println("Commands: "+ Arrays.toString(wordsArray));
@@ -124,5 +136,16 @@ public class ViewCli implements ViewInterface{
     @Override
     public void newBoard() throws IOException {
         this.controller.newBoard(getBoardParameters());
+    }
+
+    @Override
+    public void newSmartBoard() throws IOException {
+        this.controller.newSmartBoard(getBoardParameters(),getRules());
+    }
+
+    @Override
+    public void printHelp() {
+        //TODO
+        System.out.print("\nAiutati da solo :> ");
     }
 }

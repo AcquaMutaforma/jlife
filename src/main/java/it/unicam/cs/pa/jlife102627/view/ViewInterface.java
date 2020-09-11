@@ -4,6 +4,7 @@ import it.unicam.cs.pa.jlife102627.Model.CellInterface;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -35,14 +36,16 @@ public interface ViewInterface {
     void load();
     void save();
 
-    String getBoardType() throws IOException;
+    void getBoardType() throws IOException;
     HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException;
 
     void unknown();
-    void printCommands(TreeSet<String> set);
+    void printCommands(Set<String> set);
 
     /* Comandi per il controller */
     void nextTime();
     void newBoard() throws IOException;
+    void newSmartBoard() throws IOException;
 
+    void printHelp();
 }

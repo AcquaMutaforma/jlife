@@ -21,18 +21,6 @@ public class SmartViewCli implements SmartViewInterface{
     }
 
     @Override
-    public String getBoardType() throws IOException {
-        String t;
-        do{
-            System.out.print("\nSelect the type of the board [default/smart] > ");
-            t = input.readLine();
-            if(t.equals("default") || t.equals("smart") || t.equals("d") || t.equals("s"))
-                return t;
-            System.out.print("\nInvalid type !!\n Try again >.<");
-        }while(true);
-    }
-
-    @Override
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException {
         System.out.print("\nChose the life rules of Smart Cells:");
         for(String s : this.rulesm.getAvailableRules()){
@@ -41,4 +29,5 @@ public class SmartViewCli implements SmartViewInterface{
         System.out.print("\nRule > ");
         return this.rulesm.getRules(input.readLine());
     }
+
 }

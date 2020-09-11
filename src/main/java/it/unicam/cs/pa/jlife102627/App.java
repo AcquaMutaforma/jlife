@@ -1,6 +1,5 @@
 package it.unicam.cs.pa.jlife102627;
 
-import it.unicam.cs.pa.jlife102627.rules.RulesManager;
 import it.unicam.cs.pa.jlife102627.view.ViewCli;
 import it.unicam.cs.pa.jlife102627.view.ViewInterface;
 
@@ -10,14 +9,13 @@ import java.util.function.Consumer;
 
 public class App {
 
-    private final ControllerInterface controller;
     private final ViewInterface view;
 
     private HashMap<String, Consumer<ViewInterface>> commands;
 
     public App() {
-        this.controller = new Controller();
-        this.view = new ViewCli(this.controller);
+        ControllerInterface controller = new Controller();
+        this.view = new ViewCli(controller);
     }
 
     public static void main(String[] args) throws IOException {
@@ -51,15 +49,17 @@ public class App {
         this.commands.put("next", ViewInterface::nextTime);
         this.commands.put("new", x-> {
             try {
-                x.newBoard();
+                x.getBoardType();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-
+        this.commands.put("commands", x -> x.printCommands(this.commands.keySet()));
+        this.commands.put("help", x -> x.printHelp());
         /*
         TODO
-        save - load -
+        save
+        load
          */
     }
 }

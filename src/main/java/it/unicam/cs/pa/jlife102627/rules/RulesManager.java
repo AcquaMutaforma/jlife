@@ -35,11 +35,13 @@ public class RulesManager implements RulesManagerInterface{
         return r;
     }
 
-    //TODO EHEH non so che metterci, dai rendi l'idea susu
+    // Per rendere un idea di come e' possibile personalizzare le celle
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getZombieRules() {
         HashMap<Predicate<Integer>, Consumer<CellInterface>> r = new HashMap<>();
-        r.put(x -> x > 3 || x < 2, y -> y.setState(false));
-        r.put( x -> x == 3, y -> y.setState(true));
+        //sopraffatto dagli zombie
+        r.put( x -> x < 3 , y -> y.setState(false));
+        //curato dai sopravvissuti
+        r.put( x -> x > 3 , y -> y.setState(true));
         return r;
     }
 
@@ -50,6 +52,5 @@ public class RulesManager implements RulesManagerInterface{
             default: return  getDefaultRules();
         }
     }
-
 
 }
