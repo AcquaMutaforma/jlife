@@ -14,7 +14,11 @@ import java.util.function.Predicate;
  */
 public class Controller implements ControllerInterface{
 
-    /*
+    /* TODO: forse il save e load vanno gestiti dalla view.
+        Comunque non devono essere inizializzti
+        prima di essere utilizzati, infatti il costruttore di controller
+        va cambiato, vedi i commenti lì.
+
     private final LoadInterface loader;
     private final SaveInterface saver;
     */

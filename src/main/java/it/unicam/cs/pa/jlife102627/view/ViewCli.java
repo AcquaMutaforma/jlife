@@ -25,6 +25,23 @@ public class ViewCli implements ViewInterface{
     }
 
     @Override
+    public void printHello() {
+        System.out.print("     __.__  .__  _____       \n" +
+                "    |__|  | |__|/ ____\\____  \n" +
+                "    |  |  | |  \\   __\\/ __ \\ \n" +
+                "    |  |  |_|  ||  | \\  ___/ \n" +
+                "/\\__|  |____/__||__|  \\___  >\n" +
+                "\\______|                  \\/\n");
+        System.out.print("\n\nIf you need help type: help\nTo check the commands type: commands");
+    }
+
+    @Override
+    public void printHelp() {
+        System.out.print("\nTo start a new game, you just have to type 'new' and follow the instructions.\n" +
+                "The smart rules are my variant of the classic game of life.\n");
+    }
+
+    @Override
     public void printBoard() {
         BoardInterface board = this.controller.getBoard();
         if(board == null || board.getCell(0,0) == null)
@@ -40,17 +57,6 @@ public class ViewCli implements ViewInterface{
             System.out.print("\n");
         }
         System.out.print("\n");
-    }
-
-    @Override
-    public void printHello() {
-        System.out.print("     __.__  .__  _____       \n" +
-                "    |__|  | |__|/ ____\\____  \n" +
-                "    |  |  | |  \\   __\\/ __ \\ \n" +
-                "    |  |  |_|  ||  | \\  ___/ \n" +
-                "/\\__|  |____/__||__|  \\___  >\n" +
-                "\\______|                  \\/\n");
-        System.out.print("\n\nIf you need help type: help\nTo check the commands type: commands");
     }
 
     @Override
@@ -76,12 +82,6 @@ public class ViewCli implements ViewInterface{
     }
 
     @Override
-    public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException {
-        this.smartview = new SmartViewCli(this.input);
-        return this.smartview.getRules();
-    }
-
-    @Override
     public String getCommand() throws IOException {
         printBoard();
         System.out.print("\ncommand > ");
@@ -93,21 +93,23 @@ public class ViewCli implements ViewInterface{
         do {
             System.out.print("\nWanna load a board ? [yes/no] > ");
             String load = input.readLine();
-            if (load.equals("yes"))
+            if (load.equals("") || load.equals("yes"))
                 return true;
-            if (load.equals("") || load.toLowerCase().equals("no"))
+            if (load.toLowerCase().equals("no"))
                 return false;
         }while(true);
     }
 
     @Override
     public void load(){
-        //TODO
+        LoaderViewInterface loader = new LoaderView();
+        loader.load();
     }
 
     @Override
     public void save() {
-        //TODO
+        SaverViewInterface saver = new SaverView();
+        saver.save();
     }
 
     @Override
@@ -144,8 +146,8 @@ public class ViewCli implements ViewInterface{
     }
 
     @Override
-    public void printHelp() {
-        //TODO
-        System.out.print("\nAiutati da solo :> ");
+    public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException {
+        this.smartview = new SmartViewCli(this.input);
+        return this.smartview.getRules();
     }
 }

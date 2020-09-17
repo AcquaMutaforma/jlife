@@ -55,7 +55,7 @@ public class App {
             }
         });
         this.commands.put("commands", x -> x.printCommands(this.commands.keySet()));
-        this.commands.put("help", x -> x.printHelp());
+        this.commands.put("help", ViewInterface::printHelp);
         /*
         TODO
         save

@@ -8,9 +8,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-/**
- * Gestisce le leggi di vita e morte delle SmartCell.
- */
+/** Gestisce le leggi di vita e di morte delle SmartCell. */
 public class RulesManager implements RulesManagerInterface{
 
 
@@ -22,10 +20,9 @@ public class RulesManager implements RulesManagerInterface{
         return available;
     }
 
-    /**
-     * Default: se una cellula ha meno di 2 o piu di 3 vicini vivi, muore
+    /** Default: se una cellula ha meno di 2 o piu di 3 vicini vivi, muore
      * se una cellula morta ha 3 vicini vivi, allora vive
-     * @return Default rules of game of life
+     * @return regole Default del game of life
      */
     @Override
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getDefaultRules() {
@@ -35,7 +32,9 @@ public class RulesManager implements RulesManagerInterface{
         return r;
     }
 
-    // Per rendere un idea di come e' possibile personalizzare le celle
+    /** Creato per rendere un idea di come e' possibile personalizzare le celle
+     * @return regole Zombie del game of life
+     */
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getZombieRules() {
         HashMap<Predicate<Integer>, Consumer<CellInterface>> r = new HashMap<>();
         //sopraffatto dagli zombie
@@ -49,7 +48,7 @@ public class RulesManager implements RulesManagerInterface{
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules(String s) {
         switch (s){
             case "zombie": return getZombieRules();
-            default: return  getDefaultRules();
+            default: return getDefaultRules();
         }
     }
 
