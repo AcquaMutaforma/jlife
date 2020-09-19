@@ -1,5 +1,7 @@
 package it.unicam.cs.pa.jlife102627.Model;
 
+import it.unicam.cs.pa.jlife102627.CellType;
+
 import java.util.HashMap;
 import java.util.Random;
 import java.util.function.Consumer;
@@ -22,5 +24,10 @@ public class SmartBoard extends Board{
                 super.matrix[i][j] = new SmartCell(r.nextBoolean(),this.rules);
             }
         }
+    }
+
+    @Override
+    public CellType getType(){
+        return CellType.SMART;
     }
 }

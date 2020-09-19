@@ -14,8 +14,7 @@ public class App {
     private HashMap<String, Consumer<ViewInterface>> commands;
 
     public App() {
-        ControllerInterface controller = new Controller();
-        this.view = new ViewCli(controller);
+        this.view = new ViewCli(new Controller());
     }
 
     public static void main(String[] args) throws IOException {
@@ -43,7 +42,7 @@ public class App {
         this.view.printGoodbye();
     }
 
-    private void generateCommands(){
+    private void generateCommands() {
         this.commands = new HashMap<>();
         this.commands.put("", ViewInterface::nextTime);
         this.commands.put("next", ViewInterface::nextTime);
@@ -56,10 +55,14 @@ public class App {
         });
         this.commands.put("commands", x -> x.printCommands(this.commands.keySet()));
         this.commands.put("help", ViewInterface::printHelp);
-        /*
-        TODO
-        save
-        load
-         */
+
+        this.commands.put("save", x -> {
+            try {
+                x.save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        this.commands.put("load", ViewInterface::load);
     }
 }

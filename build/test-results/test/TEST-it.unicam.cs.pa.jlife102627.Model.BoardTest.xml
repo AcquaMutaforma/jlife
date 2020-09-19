@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="it.unicam.cs.pa.jlife102627.Model.BoardTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-09-09T15:25:10" hostname="oldiron" time="0.003">
+<testsuite name="it.unicam.cs.pa.jlife102627.Model.BoardTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-09-19T08:26:16" hostname="oldiron" time="0.003">
   <properties/>
   <testcase name="generateRandomBoard" classname="it.unicam.cs.pa.jlife102627.Model.BoardTest" time="0.002"/>
   <testcase name="getNeighbors" classname="it.unicam.cs.pa.jlife102627.Model.BoardTest" time="0.0"/>

@@ -18,18 +18,8 @@ public class Controller implements ControllerInterface{
         Comunque non devono essere inizializzti
         prima di essere utilizzati, infatti il costruttore di controller
         va cambiato, vedi i commenti lì.
-
-    private final LoadInterface loader;
-    private final SaveInterface saver;
     */
     private BoardInterface board;
-
-    public Controller() {
-        /*
-        this.loader = new Loader();
-        this.saver = new Saver();
-         */
-    }
 
     @Override
     public void newBoard(int dim){

@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 public class SmartCell extends Cell{
 
-    private HashMap<Predicate<Integer>,Consumer<CellInterface>> rules;
+    private transient HashMap<Predicate<Integer>,Consumer<CellInterface>> rules;
 
     public SmartCell(boolean state, HashMap<Predicate<Integer>,Consumer<CellInterface>> r) {
         super(state);

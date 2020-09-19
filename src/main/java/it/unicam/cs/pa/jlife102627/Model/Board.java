@@ -1,5 +1,7 @@
 package it.unicam.cs.pa.jlife102627.Model;
 
+import it.unicam.cs.pa.jlife102627.CellType;
+
 import java.util.Random;
 
 /**
@@ -60,6 +62,11 @@ public class Board implements BoardInterface{
                 this.matrix[i][j].live(next[i][j]);
             }
         }
+    }
+
+    @Override
+    public CellType getType() {
+        return CellType.CLASSIC;
     }
 
     @Override

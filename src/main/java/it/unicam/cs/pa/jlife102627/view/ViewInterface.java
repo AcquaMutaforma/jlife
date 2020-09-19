@@ -32,8 +32,8 @@ public interface ViewInterface {
      * Dopo aver richiesto il percorso all'utente, carica una sessione precedente
      * attraverso LoadInterface
      */
-    void load();
-    void save();
+    void load() throws IOException;
+    void save() throws IOException;
 
     void getBoardType() throws IOException;
     HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException;
