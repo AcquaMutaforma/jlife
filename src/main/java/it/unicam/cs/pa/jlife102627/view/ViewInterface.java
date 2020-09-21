@@ -12,6 +12,8 @@ public interface ViewInterface {
 
     void printBoard();
     String getCommand() throws IOException;
+    void printCommands(Set<String> set);
+
     void printHello();
     void printGoodbye();
 
@@ -24,9 +26,8 @@ public interface ViewInterface {
 
     /**
      * Chiede all'utente se vuole caricare una sessione precedente
-     * @return risposta utente.
      */
-    boolean askLoad() throws IOException;
+    void askLoad() throws IOException;
 
     /**
      * Dopo aver richiesto il percorso all'utente, carica una sessione precedente
@@ -39,7 +40,6 @@ public interface ViewInterface {
     HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException;
 
     void unknown();
-    void printCommands(Set<String> set);
 
     /* Comandi per il controller */
     void nextTime();

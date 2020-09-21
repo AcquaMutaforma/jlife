@@ -17,7 +17,6 @@ import java.util.function.Predicate;
 public class ViewCli implements ViewInterface{
 
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-    SmartViewInterface smartview;
     ControllerInterface controller;
 
     public ViewCli(ControllerInterface controller) {
@@ -90,22 +89,36 @@ public class ViewCli implements ViewInterface{
     }
 
     @Override
-    public boolean askLoad() throws IOException {
+    public void askLoad() throws IOException {
         do {
             System.out.print("\nWanna load a board ? [yes/no] > ");
-            String load = input.readLine();
-            if (load.equals("") || load.equals("yes"))
-                return true;
-            if (load.toLowerCase().equals("no"))
-                return false;
+            String load = input.readLine().toLowerCase();
+            if (load.equals("") || load.equals("yes")){
+                load();
+                break;
+            }
+            if (load.toLowerCase().equals("no")) {
+                break;
+            }
         }while(true);
     }
 
     @Override
     public void load() throws IOException {
-        LoaderViewInterface loader = new LoaderView();
-        loader.load(this.controller);
-        //TODO aggiungere scelta smart o classic
+        do {
+            System.out.print("\nWanna load a classic board ? [yes/no] > ");
+            String load = input.readLine().toLowerCase();
+            if (load.equals("") || load.equals("yes") || load.equals("y")) {
+                LoaderViewInterface loader = new LoaderView();
+                loader.load(this.controller);
+                break;
+            }
+            if (load.equals("no")) {
+                SmartViewInterface smartView = new SmartViewCli(this.input);
+                smartView.loadAsSmartBoard(this.controller);
+                break;
+            }
+        }while(true);
     }
 
     @Override
@@ -148,7 +161,7 @@ public class ViewCli implements ViewInterface{
 
     @Override
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException {
-        this.smartview = new SmartViewCli(this.input);
-        return this.smartview.getRules();
+        SmartViewInterface smartview = new SmartViewCli(this.input);
+        return smartview.getRules();
     }
 }

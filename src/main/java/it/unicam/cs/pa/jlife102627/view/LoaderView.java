@@ -19,8 +19,8 @@ public class LoaderView implements LoaderViewInterface{
         if(path.equals("")) {
             System.out.print("\nPath == \"\"; Command ignored !");
             return;
-        }else
-            path = path.concat("/");
+        }
+        path = path.concat("/board.txt");
         LoadInterface loader = new Loader();
         loader.load(c,path);
         System.out.print("\nLoad complete !");
