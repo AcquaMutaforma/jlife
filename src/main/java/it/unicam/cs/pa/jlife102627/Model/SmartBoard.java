@@ -11,7 +11,7 @@ public class SmartBoard extends Board{
 
     private final HashMap<Predicate<Integer>, Consumer<CellInterface>> rules;
 
-    public SmartBoard(int d, HashMap<Predicate<Integer>, Consumer<CellInterface>> r) {
+    public SmartBoard(int d, HashMap<Predicate<Integer>, Consumer<CellInterface>> r ) {
         super(d);
         this.rules = r;
     }
@@ -29,5 +29,10 @@ public class SmartBoard extends Board{
     @Override
     public CellType getType(){
         return CellType.SMART;
+    }
+
+    public void setCell(SmartCell c, int x, int y, HashMap<Predicate<Integer>, Consumer<CellInterface>> r) {
+        c.setRules(r);
+        this.matrix[x][y] = c;
     }
 }

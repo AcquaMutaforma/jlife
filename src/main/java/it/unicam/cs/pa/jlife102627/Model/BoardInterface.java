@@ -14,4 +14,6 @@ public interface BoardInterface {
     void generateRandomBoard();
     void nextTime();
     CellType getType();
+
+    void setCell(CellInterface c,int x, int y);
 }

@@ -7,4 +7,5 @@ import java.io.IOException;
 public interface SaveInterface {
 
     void save(ControllerInterface c, String path) throws IOException;
+
 }

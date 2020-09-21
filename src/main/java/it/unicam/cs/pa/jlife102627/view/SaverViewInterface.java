@@ -8,4 +8,5 @@ public interface SaverViewInterface {
 
     void save(ControllerInterface c) throws IOException;
     String getPath() throws IOException;
+
 }

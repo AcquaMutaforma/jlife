@@ -16,4 +16,6 @@ public interface ControllerInterface {
     // Not The Classic Game Of Life
     void newSmartBoard(int dim, HashMap<Predicate<Integer>, Consumer<CellInterface>> r);
 
+    void loadBoard(BoardInterface b);
+
 }

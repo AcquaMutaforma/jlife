@@ -1,8 +1,10 @@
 package it.unicam.cs.pa.jlife102627.view;
 
+import it.unicam.cs.pa.jlife102627.ControllerInterface;
 import it.unicam.cs.pa.jlife102627.Model.CellInterface;
 import it.unicam.cs.pa.jlife102627.rules.RulesManager;
 import it.unicam.cs.pa.jlife102627.rules.RulesManagerInterface;
+import it.unicam.cs.pa.jlife102627.save.SmartLoader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,6 +30,12 @@ public class SmartViewCli implements SmartViewInterface{
         }
         System.out.print("\nRule > ");
         return this.rulesm.getRules(input.readLine());
+    }
+
+    public void loadAsSmartBoard(ControllerInterface c) throws IOException {
+        SmartLoader sloader = new SmartLoader();
+        LoaderViewInterface lview = new LoaderView();
+        sloader.load(c,lview.getPath(), getRules());
     }
 
 }

@@ -26,7 +26,7 @@ public class SaverView implements SaverViewInterface{
 
     @Override
     public String getPath() throws IOException {
-        System.out.print("\nInsert the path to save this board [string/ENTER] > ");
-        return input.readLine().concat(".txt");
+        System.out.print("\nInsert the path to save this board [ENTER = back] > ");
+        return input.readLine();
     }
 }

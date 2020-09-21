@@ -2,6 +2,7 @@ package it.unicam.cs.pa.jlife102627.save;
 
 import com.google.gson.Gson;
 import it.unicam.cs.pa.jlife102627.ControllerInterface;
+import it.unicam.cs.pa.jlife102627.Model.BoardInterface;
 import it.unicam.cs.pa.jlife102627.Model.CellInterface;
 
 import java.io.File;
@@ -15,13 +16,14 @@ public class Saver implements SaveInterface{
     public void save(ControllerInterface c, String path) throws IOException {
         String toAdd = "";
         Gson gson = new Gson();
-        for(int i = 0; i < c.getBoard().getDim(); i++){
-            for(int j = 0; j < c.getBoard().getDim(); j++) {
-                CellInterface cell = c.getBoard().getCell(i, j);
+        BoardInterface board = c.getBoard();
+        for(int i = 0; i < board.getDim(); i++){
+            for(int j = 0; j < board.getDim(); j++) {
+                CellInterface cell = board.getCell(i, j);
                 toAdd = toAdd.concat(gson.toJson(cell)+"\n");
             }
         }
-        writeXtoY(toAdd,path);
+        writeXtoY(toAdd,path.concat("/board.txt"));
     }
 
     /**
@@ -36,4 +38,5 @@ public class Saver implements SaveInterface{
         writer.append(s);
         writer.close();
     }
+
 }

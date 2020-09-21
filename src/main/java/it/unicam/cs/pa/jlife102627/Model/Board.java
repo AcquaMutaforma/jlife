@@ -70,6 +70,12 @@ public class Board implements BoardInterface{
     }
 
     @Override
+    public void setCell(CellInterface c, int x, int y) {
+        this.matrix[x][y] = c;
+    }
+
+
+    @Override
     public int getDim(){
         return this.dim;
     }

@@ -19,7 +19,8 @@ public class LoaderView implements LoaderViewInterface{
         if(path.equals("")) {
             System.out.print("\nPath == \"\"; Command ignored !");
             return;
-        }
+        }else
+            path = path.concat("/");
         LoadInterface loader = new Loader();
         loader.load(c,path);
         System.out.print("\nLoad complete !");
@@ -28,6 +29,6 @@ public class LoaderView implements LoaderViewInterface{
     @Override
     public String getPath() throws IOException {
         System.out.print("\nInsert the path of the board to load [string/ENTER] > ");
-        return input.readLine().concat(".txt");
+        return input.readLine();
     }
 }

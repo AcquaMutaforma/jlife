@@ -63,6 +63,12 @@ public class App {
                 e.printStackTrace();
             }
         });
-        this.commands.put("load", ViewInterface::load);
+        this.commands.put("load", x -> {
+            try {
+                x.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

@@ -39,7 +39,7 @@ public class ViewCli implements ViewInterface{
     public void printHelp() {
         System.out.print("\nTo start a new game, you just have to type 'new' and follow the instructions.\n" +
                 "The smart rules are my variant of the classic game of life.\n"+
-                "\n\nTo save a board you have to type the path and the name of file ( /home/aley/desktop/board_1");
+                "\n\nTo save a board you have to type the path with the new directory's name ( /home/aley/desktop/board_1 )");
     }
 
     @Override
@@ -105,6 +105,7 @@ public class ViewCli implements ViewInterface{
     public void load() throws IOException {
         LoaderViewInterface loader = new LoaderView();
         loader.load(this.controller);
+        //TODO aggiungere scelta smart o classic
     }
 
     @Override
@@ -115,7 +116,6 @@ public class ViewCli implements ViewInterface{
 
     @Override
     public void unknown() {
-        //TODO pensare se va bene o creare un errore apposito
         System.out.print("\nUnknown command");
     }
 

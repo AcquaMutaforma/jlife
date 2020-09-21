@@ -1,5 +1,6 @@
 package it.unicam.cs.pa.jlife102627.view;
 
+import it.unicam.cs.pa.jlife102627.ControllerInterface;
 import it.unicam.cs.pa.jlife102627.Model.CellInterface;
 
 import java.io.IOException;
@@ -14,4 +15,6 @@ public interface SmartViewInterface{
 
     /** Chiede il tipo di regole da applicare alla smart cell  */
     HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException;
+
+    void loadAsSmartBoard(ControllerInterface c) throws IOException;
 }
