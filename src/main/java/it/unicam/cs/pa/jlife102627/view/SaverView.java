@@ -8,6 +8,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * ha la responsabilita' di gestire input e output legati al salvataggio della tabella corrente.
+ */
 public class SaverView implements SaverViewInterface{
 
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));

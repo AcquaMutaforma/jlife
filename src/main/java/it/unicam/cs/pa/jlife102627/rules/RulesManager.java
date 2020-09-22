@@ -11,7 +11,6 @@ import java.util.function.Predicate;
 /** Gestisce le leggi di vita e di morte delle SmartCell. */
 public class RulesManager implements RulesManagerInterface{
 
-
     @Override
     public List<String> getAvailableRules() {
         List<String> available = new ArrayList<>();
@@ -22,7 +21,6 @@ public class RulesManager implements RulesManagerInterface{
 
     /** Default: se una cellula ha meno di 2 o piu di 3 vicini vivi, muore
      * se una cellula morta ha 3 vicini vivi, allora vive
-     * @return regole Default del game of life
      */
     @Override
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getDefaultRules() {
@@ -32,8 +30,10 @@ public class RulesManager implements RulesManagerInterface{
         return r;
     }
 
-    /** Creato per rendere un idea di come e' possibile personalizzare le celle
-     * @return regole Zombie del game of life
+    /** Zombie: se una cellula ha meno di 3 vicini,allora muore; se una cellula ha piu' di 3
+     * vicini allora sopravvive/viene curato.
+     * Creato per rendere un idea di come e' possibile personalizzare le regole
+     * per le SmartCell
      */
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getZombieRules() {
         HashMap<Predicate<Integer>, Consumer<CellInterface>> r = new HashMap<>();
@@ -44,9 +44,14 @@ public class RulesManager implements RulesManagerInterface{
         return r;
     }
 
+    /**
+     * In base all'input restituisce le regole da applicare alle SmartCell.
+     * @param s nome delle regole
+     * @return regole per le smartCell.
+     */
     @Override
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules(String s) {
-        switch (s){
+        switch (s.toLowerCase()){
             case "zombie": return getZombieRules();
             default: return getDefaultRules();
         }

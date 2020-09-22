@@ -34,7 +34,7 @@ public class Saver implements SaveInterface{
      */
     private void writeXtoY(String s, String filename) throws IOException {
         File file = new File(filename);
-        FileWriter writer = new FileWriter(file,true);
+        FileWriter writer = new FileWriter(file,false);
         writer.append(s);
         writer.close();
     }

@@ -29,14 +29,11 @@ public class App {
         generateCommands();
         while (true) {
             String command = this.view.getCommand();
-            if(command.equals("exit")) {
-                break;
-            }
+            if(command.equals("exit")) { break; }
             Consumer<ViewInterface> action = this.commands.get(command);
             if(action == null){
                 this.view.unknown();
-                continue;
-            }
+                continue;}
             action.accept(this.view);
         }
         this.view.printGoodbye();
@@ -48,7 +45,7 @@ public class App {
         this.commands.put("next", ViewInterface::nextTime);
         this.commands.put("new", x-> {
             try {
-                x.getBoardType();
+                x.newBoard();
             } catch (IOException e) {
                 e.printStackTrace();
             }

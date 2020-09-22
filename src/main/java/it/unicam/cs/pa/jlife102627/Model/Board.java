@@ -23,6 +23,11 @@ public class Board implements BoardInterface{
         return this.matrix;
     }
 
+    /**
+     * Calcola il numero di celle con stato = true nelle ad una casella di distanza
+     * escludendo se stessa.
+     * @return numero di cellule vive attorno a quella indicata.
+     */
     @Override
     public int getNeighbors(int x, int y) {
         int tmp = 0;
@@ -49,6 +54,11 @@ public class Board implements BoardInterface{
         }
     }
 
+    /**
+     * crea una tabella di int in cui vengono inseriti il numero di vicini di ogni
+     * cellula, cosi' nel prossimo istante temporale possono 'vivere' in base ai vicini
+     * alla tabella precedente.
+     */
     @Override
     public void nextTime() {
         int[][] next = new int[getDim()][getDim()];
@@ -73,7 +83,6 @@ public class Board implements BoardInterface{
     public void setCell(CellInterface c, int x, int y) {
         this.matrix[x][y] = c;
     }
-
 
     @Override
     public int getDim(){

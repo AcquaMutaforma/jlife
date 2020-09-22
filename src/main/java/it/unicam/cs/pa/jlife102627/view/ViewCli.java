@@ -14,14 +14,16 @@ import java.util.TreeSet;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ * ha la responsabilita' di gestire l'input e output generici dell'app.
+ * Come la stampa della tabella, la ricezione dei comandi o la stampa di benvenuto.
+ */
 public class ViewCli implements ViewInterface{
 
     BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
     ControllerInterface controller;
 
-    public ViewCli(ControllerInterface controller) {
-        this.controller = controller;
-    }
+    public ViewCli(ControllerInterface controller) {  this.controller = controller;    }
 
     @Override
     public void printHello() {
@@ -59,20 +61,23 @@ public class ViewCli implements ViewInterface{
         System.out.print("\n");
     }
 
+    /**
+     * ha la responsabilita' di definire il tipo di tabella all'utente.
+     * Utilizzato inizia la creazione di una nuova tabella
+     * //TODO
+     */
     @Override
-    public void getBoardType() throws IOException {
+    public String getBoardType() throws IOException {
         String t;
         do{
             System.out.print("\nSelect the type of the board [default/smart] > ");
             t = input.readLine();
-            if(t.equals("default") || t.equals("d") ) {
-                newBoard();
-            }
-            else if(t.equals("smart") || t.equals("s")) {
-                newSmartBoard();
+            if(t.equals("default") || t.equals("d") || t.equals("smart") || t.equals("s")) {
+                break;
             }else
                 System.out.print("\nInvalid type !!\n Try again >.<");
-        }while(!t.equals("default") && !t.equals("smart") && !t.equals("d") && !t.equals("s"));
+        }while(true);
+        return t;
     }
 
     @Override
@@ -150,18 +155,18 @@ public class ViewCli implements ViewInterface{
     }
 
     @Override
-    public void newBoard() throws IOException {
-        this.controller.newBoard(getBoardParameters());
-    }
-
-    @Override
-    public void newSmartBoard() throws IOException {
-        this.controller.newSmartBoard(getBoardParameters(),getRules());
-    }
-
-    @Override
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException {
         SmartViewInterface smartview = new SmartViewCli(this.input);
         return smartview.getRules();
+    }
+
+    @Override
+    public void newBoard() throws IOException {
+        String t = getBoardType();
+        if (t.equals("d")) {
+            this.controller.newBoard(getBoardParameters());
+        } else if (t.equals("s")) {
+            this.controller.newSmartBoard(getBoardParameters(), getRules());
+        }
     }
 }

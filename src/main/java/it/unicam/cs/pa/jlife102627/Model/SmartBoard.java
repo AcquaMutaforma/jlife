@@ -7,6 +7,9 @@ import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ * ha la responsabilita' di creare una tabella con le SmartCell invece delle normali Cell
+ */
 public class SmartBoard extends Board{
 
     private final HashMap<Predicate<Integer>, Consumer<CellInterface>> rules;

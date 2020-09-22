@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ * Ha la responsabilità di gestire gli input e output legati ai componenti Smart.
+ */
 public class SmartViewCli implements SmartViewInterface{
 
     BufferedReader input;
@@ -22,6 +25,12 @@ public class SmartViewCli implements SmartViewInterface{
         this.rulesm = new RulesManager();
     }
 
+    /**
+     * stampa le regole disponibili del rulesManager e ritorna le regole
+     * che corrispondono all'input dell'utente
+     * @return regole per smarCell
+     * @throws IOException .
+     */
     @Override
     public HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException {
         System.out.print("\nChose the life rules of Smart Cells:");
@@ -32,6 +41,11 @@ public class SmartViewCli implements SmartViewInterface{
         return this.rulesm.getRules(input.readLine());
     }
 
+    /**
+     * inizializza il caricamento di una smartBoard.
+     * @param c controller in cui caricare la tabella.
+     * @throws IOException errore di digitura dell'utente.
+     */
     public void loadAsSmartBoard(ControllerInterface c) throws IOException {
         SmartLoader sloader = new SmartLoader();
         LoaderViewInterface lview = new LoaderView();

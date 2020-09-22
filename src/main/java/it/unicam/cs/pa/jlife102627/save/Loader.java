@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * ha la responsabilita' di caricare da un file la tabella per il controller.
+ */
 public class Loader implements LoadInterface {
 
     @Override
@@ -29,6 +32,12 @@ public class Loader implements LoadInterface {
         c.loadBoard(board);
     }
 
+    /**
+     * calcola la dimensione della tabella da creare.
+     * @param f file del salvataggio
+     * @return dimensione tabella
+     * @throws FileNotFoundException file non trovato
+     */
     public int getDim(File f) throws FileNotFoundException {
         Scanner scanner = new Scanner(f);
         int dim = 0;

@@ -13,8 +13,19 @@ import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ * ha la responsabilita' di caricare una tabella di tipo smart.
+ */
 public class SmartLoader extends Loader{
 
+    /**
+     * crea una tabella Smart e carica dal file di salvataggio le Cell ed aggiunge ad ognuna
+     * le regole che devono utilizzare per vivere.
+     * @param c Controller in cui caricare la board.
+     * @param path percorso del file del salvataggio.
+     * @param rules regole da dare alle SmartCell.
+     * @throws FileNotFoundException se ci sono problemi con il file.
+     */
     public void load(ControllerInterface c, String path, HashMap<Predicate<Integer>, Consumer<CellInterface>> rules) throws FileNotFoundException {
         File f = new File(path);
         SmartBoard board = new SmartBoard(getDim(f),rules);

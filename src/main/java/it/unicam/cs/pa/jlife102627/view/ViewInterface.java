@@ -8,6 +8,10 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ * ha la responsabilita' di gestire l'input e output generici dell'app.
+ * Come la stampa della tabella, la ricezione dei comandi o la stampa di benvenuto.
+ */
 public interface ViewInterface {
 
     void printBoard();
@@ -36,7 +40,7 @@ public interface ViewInterface {
     void load() throws IOException;
     void save() throws IOException;
 
-    void getBoardType() throws IOException;
+    String getBoardType() throws IOException;
     HashMap<Predicate<Integer>, Consumer<CellInterface>> getRules() throws IOException;
 
     void unknown();
@@ -44,7 +48,6 @@ public interface ViewInterface {
     /* Comandi per il controller */
     void nextTime();
     void newBoard() throws IOException;
-    void newSmartBoard() throws IOException;
 
     void printHelp();
 }

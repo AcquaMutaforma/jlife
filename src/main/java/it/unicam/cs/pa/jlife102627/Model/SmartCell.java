@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+/**
+ * ha la responsabilita' di simulare una cellula. La differenza tra questa e la Cell e' come
+ * gestisce le regole di vita.
+ */
 public class SmartCell extends Cell{
 
     private transient HashMap<Predicate<Integer>,Consumer<CellInterface>> rules;

@@ -7,7 +7,9 @@ import it.unicam.cs.pa.jlife102627.save.Loader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+/**
+ * ha la responsabilita' di gestire input e output legati al caricamento di una tabella.
+ */
 public class LoaderView implements LoaderViewInterface{
 
 
