@@ -35,7 +35,7 @@ public class SmartViewCli implements SmartViewInterface{
     public void loadAsSmartBoard(ControllerInterface c) throws IOException {
         SmartLoader sloader = new SmartLoader();
         LoaderViewInterface lview = new LoaderView();
-        sloader.load(c,lview.getPath(), getRules());
+        sloader.load(c,lview.getPath().concat("/board.txt"), getRules());
     }
 
 }

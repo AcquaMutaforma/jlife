@@ -21,8 +21,8 @@ public class SmartLoader extends Loader{
         int dim = board.getDim();
         Gson gson = new Gson();
         Scanner scanner = new Scanner(f);
-        for(int i = 0; i <= dim; i++){
-            for(int j = 0; j <= dim; j++){
+        for(int i = 0; i < dim; i++){
+            for(int j = 0; j < dim; j++){
                 board.setCell(gson.fromJson(scanner.nextLine(), SmartCell.class), i, j, rules);
             }
         }

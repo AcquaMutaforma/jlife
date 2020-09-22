@@ -39,8 +39,6 @@ public class Controller implements ControllerInterface{
     }
 
     @Override
-    public void loadBoard(BoardInterface b) {
-        this.board = b;
-    }
+    public void loadBoard(BoardInterface b) { this.board = b;  }
 
 }

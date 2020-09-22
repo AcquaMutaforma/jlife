@@ -1,7 +1,7 @@
 it/unicam/cs/pa/jlife102627/Model/SmartCell.java
  it.unicam.cs.pa.jlife102627.Model.SmartCell
-it/unicam/cs/pa/jlife102627/view/ViewInterface.java
- it.unicam.cs.pa.jlife102627.view.ViewInterface
+it/unicam/cs/pa/jlife102627/Model/Board.java
+ it.unicam.cs.pa.jlife102627.Model.Board
 it/unicam/cs/pa/jlife102627/rules/RulesManager.java
  it.unicam.cs.pa.jlife102627.rules.RulesManager
 it/unicam/cs/pa/jlife102627/CellType.java
@@ -16,8 +16,8 @@ it/unicam/cs/pa/jlife102627/save/LoadInterface.java
  it.unicam.cs.pa.jlife102627.save.LoadInterface
 it/unicam/cs/pa/jlife102627/save/Saver.java
  it.unicam.cs.pa.jlife102627.save.Saver
-it/unicam/cs/pa/jlife102627/save/Loader.java
- it.unicam.cs.pa.jlife102627.save.Loader
+it/unicam/cs/pa/jlife102627/Controller.java
+ it.unicam.cs.pa.jlife102627.Controller
 it/unicam/cs/pa/jlife102627/view/SmartViewInterface.java
  it.unicam.cs.pa.jlife102627.view.SmartViewInterface
 it/unicam/cs/pa/jlife102627/view/SaverView.java
@@ -30,21 +30,21 @@ it/unicam/cs/pa/jlife102627/save/SaveInterface.java
  it.unicam.cs.pa.jlife102627.save.SaveInterface
 it/unicam/cs/pa/jlife102627/view/SaverViewInterface.java
  it.unicam.cs.pa.jlife102627.view.SaverViewInterface
-it/unicam/cs/pa/jlife102627/save/SmartLoader.java
- it.unicam.cs.pa.jlife102627.save.SmartLoader
-it/unicam/cs/pa/jlife102627/Model/BoardInterface.java
- it.unicam.cs.pa.jlife102627.Model.BoardInterface
 it/unicam/cs/pa/jlife102627/Model/SmartBoard.java
  it.unicam.cs.pa.jlife102627.Model.SmartBoard
+it/unicam/cs/pa/jlife102627/Model/BoardInterface.java
+ it.unicam.cs.pa.jlife102627.Model.BoardInterface
+it/unicam/cs/pa/jlife102627/view/ViewInterface.java
+ it.unicam.cs.pa.jlife102627.view.ViewInterface
 it/unicam/cs/pa/jlife102627/App.java
  it.unicam.cs.pa.jlife102627.App
-it/unicam/cs/pa/jlife102627/Controller.java
- it.unicam.cs.pa.jlife102627.Controller
-it/unicam/cs/pa/jlife102627/Model/Board.java
- it.unicam.cs.pa.jlife102627.Model.Board
-it/unicam/cs/pa/jlife102627/view/SmartViewCli.java
- it.unicam.cs.pa.jlife102627.view.SmartViewCli
 it/unicam/cs/pa/jlife102627/view/ViewCli.java
  it.unicam.cs.pa.jlife102627.view.ViewCli
 it/unicam/cs/pa/jlife102627/view/LoaderView.java
  it.unicam.cs.pa.jlife102627.view.LoaderView
+it/unicam/cs/pa/jlife102627/save/Loader.java
+ it.unicam.cs.pa.jlife102627.save.Loader
+it/unicam/cs/pa/jlife102627/view/SmartViewCli.java
+ it.unicam.cs.pa.jlife102627.view.SmartViewCli
+it/unicam/cs/pa/jlife102627/save/SmartLoader.java
+ it.unicam.cs.pa.jlife102627.save.SmartLoader
